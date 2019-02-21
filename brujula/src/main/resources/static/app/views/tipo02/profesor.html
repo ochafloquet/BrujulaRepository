@@ -1,0 +1,170 @@
+<script language="Javascript">
+$.datepicker.setDefaults($.datepicker.regional.es);
+
+	$('#asociateStartDate').datepicker({
+		changeMonth : true,
+		changeYear : true,
+		dateFormat : "dd/mm/yy"
+	});
+
+	
+	$('#actingEndDate').datepicker({
+		changeMonth : true,
+		changeYear : true,
+		dateFormat : "dd/mm/yy"
+	});
+	
+</script>
+<div class="row">
+	<div class="g12">
+		<div ng-repeat="alert in alerts">
+			<notification ng-model="alert" />
+		</div>
+	</div>
+</div>
+<!-- <div class="container"> -->
+
+<div class="row">
+	<div class="g12"></div>
+</div>
+
+<div class="row">
+	<div class="g12">
+		<div class="g8"><h3>Datos Laborales Profesor</h3></div>
+
+		<div class="g4">
+			<div class="right" ng-show="false">
+				<button type="button" class="btn btn-primary btn-sm"
+					ng-click="nuevoPersona();">
+					<span class="icn icn-plus-sign"></span>Nuevo
+				</button>
+
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div class="row">
+	<div class="g12">
+		<div class="g2">
+			<div class="item">
+				<label><b></b></label>
+			</div>
+		</div>
+		<div class="g8">
+			<table ng-table="tblPersonaProfesor" show-filter="false" class="table square"
+				wt-responsive-table>
+				<tbody>
+					<tr ng-repeat="item in $data">
+						<td title="'Id'" style="text-align: center;">{{item.id_Person}}</td>
+						<td title="'Apellidos'" style="text-align: center;">{{item.surname}}</td>
+						<td title="'Nombres'" style="text-align: center;">{{item.name}}</td>
+						<td title="'asociateStartDate'" style="text-align: center;" >{{item.professor.asociateStartDate| date: 'dd/MM/yyyy'}}</td>
+						<td title="'actingEndDate'" style="text-align: center;" >{{item.professor.actingEndDate| date: 'dd/MM/yyyy'}}</td>
+						<td title="'Departamento'" style="text-align: center;" >{{item.professor.department.departmentName}}</td>
+						<td title="'Datos Laborales'"><a
+							ng-click="editarProfesor(item)"><span
+								class="icn icn-edit"></span></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="g2">
+			<div class="item">
+				<label><b></b></label>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!-- modales -->
+
+
+
+<div id="modalProfesor" class="modal fade" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<a data-dismiss="modal" class="close">X</a>
+				<h4 class="modal-title">Datos Laborales Profesor</h4>
+			</div>
+			<div class="modal-body">
+
+				<form class="form-horizontal" name="departamentoForm">
+					<div id="divAlert" class="alert alert-warning"
+						ng-model="alertModal" ng-show="fAlert" ng-style="cssAlert">
+						<button class="close missing" id="btnClose">
+							<i class="icn icn-remove"></i>
+						</button>
+						<label id="idAlert">{{txtAlert}}</label>
+					</div>
+					<div class="row">
+						<div class="g12">
+							<div class="g6">
+								<div class="item">
+									<label><b>asociateStartDate:</b></label>
+								</div>
+							</div>
+							<div class="g6">
+								<div class="item" id="idasociateStartDate"
+									style="width: 235px; margin-bottom: 3px">
+									<input id="asociateStartDate" name="asociateStartDate"
+										type="text" placeholder="dd/MM/yyyy"
+										ng-model="professor.asociateStartDate"> <i id="idIcono1"
+										class="glyphicon glyphicon-calendar"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="g12">
+							<div class="g6">
+								<div class="item">
+									<label><b>actingEndDate:</b></label>
+								</div>
+							</div>
+							<div class="g6">
+								<div class="item" id="idactingEndDate"
+									style="width: 235px; margin-bottom: 3px">
+									<input id="actingEndDate" name="actingEndDate" type="text"
+										placeholder="dd/MM/yyyy" ng-model="professor.actingEndDate">
+									<i id="idIcono2" class="glyphicon glyphicon-calendar"></i>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="g12">
+							<div class="g6">
+								<div class="item">
+									<label><b>Departamento:</b></label>
+								</div>
+							</div>
+							<div class="g6">
+								<div class="item" style="margin-bottom: 3px;">
+									<select ng-model="professor.dpto_selected" id="dpto"
+										ng-options="item as item.departmentName for item in listadepartamento track by item.id_Department">
+										<option value="">-Seleccionar-</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary btn-sm" id="btnGrabar"
+					title="Grabar" ng-click="saveProfesor();">Grabar</button>
+				<button type="button" class="btn btn-primary btn-sm"
+					data-dismiss="modal">Cancelar</button>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
