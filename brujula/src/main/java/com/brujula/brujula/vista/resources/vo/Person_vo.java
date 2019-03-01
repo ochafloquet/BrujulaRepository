@@ -18,5 +18,14 @@ public class Person_vo {
 	private Integer yearOfBirth;
 	private String  completeName;
 	private Integer age;
+	
+	public Person_vo() {
+	}
+
+	public Person_vo(String name, String surname, Integer yearOfBirth) {
+		this.name = name;
+		this.surname = surname;
+		this.yearOfBirth = yearOfBirth;
+	}
 
 }

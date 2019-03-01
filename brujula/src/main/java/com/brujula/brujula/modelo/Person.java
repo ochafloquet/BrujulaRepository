@@ -30,32 +30,28 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "Person"
-		, uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "surname"})}
-		)
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Person implements Serializable {
+@Table(name = "Person", uniqueConstraints = { @UniqueConstraint(columnNames = { "name", "surname" }) })
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+public class Person {
 
 	@Id
-	@GeneratedValue(generator="system-uuid")
-	@GenericGenerator(name="system-uuid", strategy="uuid2")
-	private String id_Person;	
+	@GeneratedValue(generator = "system-uuid")
+	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
+	private String id_Person;
 	private String name;
 	private String surname;
 	private Integer yearOfBirth;
-	
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "person")	
-	private Professor professor; 
-	
+
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "person")
+	private Professor professor;
 
 	public Person() {
-		super();
 	}
-	public Person(String name,String surname,Integer yearOfBirth) {
-		super();
-		this.name=name;
-		this.surname=surname;
-		this.yearOfBirth=yearOfBirth;
+
+	public Person(String name, String surname, Integer yearOfBirth) {
+		this.name = name;
+		this.surname = surname;
+		this.yearOfBirth = yearOfBirth;
 	}
 
 }

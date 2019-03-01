@@ -74,7 +74,10 @@ public class PersonaResource {
 		System.out.println("tamaño"+listPerson.size());
 		//recorremos la lista
 		for(Person person:listPerson){
-			Person_vo person_vo = new Person_vo();			
+			Person_vo person_vo = new Person_vo();
+			person_vo.setId_Person(person.getId_Person());
+			person_vo.setName(person.getName());
+			person_vo.setSurname(person.getSurname());
 			person_vo.setAge(currentYear-person.getYearOfBirth());
 			listPerson_vo.add(person_vo);
 		}
