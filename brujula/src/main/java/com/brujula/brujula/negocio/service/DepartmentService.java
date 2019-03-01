@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.brujula.brujula.modelo.Department;
 import com.brujula.brujula.negocio.repository.DepartmentRepository;
 
+
 /**
  * @author GMD
  *
@@ -31,4 +32,9 @@ public class DepartmentService {
 	public Department addDepartment(Department department) {
         return this.departmentRepository.save(department);
     }
+	
+//	@Override
+//    public boolean exists(Department department) {
+//        return this.departmentRepository.findByName(department.getDepartmentName()) != null;
+//    }
 }

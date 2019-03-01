@@ -37,5 +37,11 @@ public class Department {
 	@OneToOne(mappedBy = "department",fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Professor professor;
+	
+	public Department() {
+    }
+	public Department(String DepartmentName) {
+	        this.DepartmentName = DepartmentName;
+	}
 
 }

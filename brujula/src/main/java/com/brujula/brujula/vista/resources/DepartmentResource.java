@@ -6,11 +6,13 @@ package com.brujula.brujula.vista.resources;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.brujula.brujula.modelo.Department;
@@ -37,7 +39,8 @@ public class DepartmentResource {
 		return ResponseEntity.ok(this.departmentService.findAll());
 	}
 
-	@PostMapping(value = "/addDepartment")
+	@PostMapping(value = "/addDepartment", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
 	public ResponseEntity<Department> createDepartment(@RequestBody Department department) {
 		return new ResponseEntity<>(this.departmentService.addDepartment(department), HttpStatus.CREATED);
 	}
