@@ -43,8 +43,7 @@ public class BrujulaApplicationTests {
 	Person person = new Person();
 	Department department = new Department();
 	Professor professor = new Professor();
-	String Id_Department ="";
-	String Id_Person ="";
+	
 	private MockMvc mockMvc;
 	
 	@Autowired
@@ -84,7 +83,8 @@ public class BrujulaApplicationTests {
 	@Test
 	public void testGetAllDepartament() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/department/all").accept(MediaType.APPLICATION_JSON))
-		.andExpect(jsonPath("$", hasSize(4))).andDo(print());
+		.andExpect(status().isOk())
+		.andDo(print());
 	}
 	//Test para la Entidad Persona
 	/**
@@ -96,7 +96,8 @@ public class BrujulaApplicationTests {
 		Person_vo person_vo = new Person_vo("Oscar Alfredo", "Chafloque tampeck", 1984);
 		mockMvc.perform(MockMvcRequestBuilders.post("/persona/addperson").contentType(MediaType.APPLICATION_JSON)
 				.content(asJsonString(person_vo)).accept(MediaType.APPLICATION_JSON))
-				.andExpect(jsonPath("$.id_Person").exists()).andExpect(jsonPath("$.name").exists())
+				.andExpect(jsonPath("$.id_Person").exists())
+				.andExpect(jsonPath("$.name").exists())
 				.andExpect(jsonPath("$.surname").exists()).andExpect(jsonPath("$.yearOfBirth").exists())
 				.andExpect(jsonPath("$.name").value("Oscar Alfredo"))
 				.andExpect(jsonPath("$.surname").value("Chafloque tampeck"))
@@ -172,8 +173,7 @@ public class BrujulaApplicationTests {
 				.andDo(print())
 				.andReturn();
 		String contentAsStringPersona = respersona.getResponse().getContentAsString();
-		this.person = objectMapper.readValue(contentAsStringPersona, Person.class);
-		Id_Person=this.person.getId_Person();
+		this.person = objectMapper.readValue(contentAsStringPersona, Person.class);	
 		logger.info("contentAsString"+contentAsStringPersona);
 		logger.info("obteniendo datos+++++++++Id_Person"+this.person.getId_Person());
 		//Departamento
@@ -187,8 +187,7 @@ public class BrujulaApplicationTests {
 		
 		String contentAsStringDepartment = resDepartment.getResponse().getContentAsString();
 		this.department = objectMapper.readValue(contentAsStringDepartment, Department.class);
-		logger.info("contentAsString"+contentAsStringDepartment);
-		Id_Department=this.department.getId_Department();
+		logger.info("contentAsString"+contentAsStringDepartment);		
 		logger.info("Id getId_Department"+this.department.getId_Department());
 		//
 		
@@ -227,7 +226,7 @@ public class BrujulaApplicationTests {
 				.andReturn();
 		String contentAsStringPersona = respersona.getResponse().getContentAsString();
 		this.person = objectMapper.readValue(contentAsStringPersona, Person.class);
-		Id_Person=this.person.getId_Person();
+		
 		logger.info("contentAsString"+contentAsStringPersona);
 		logger.info("obteniendo datos+++++++++Id_Person"+this.person.getId_Person());
 		//Departamento
@@ -241,8 +240,7 @@ public class BrujulaApplicationTests {
 		
 		String contentAsStringDepartment = resDepartment.getResponse().getContentAsString();
 		this.department = objectMapper.readValue(contentAsStringDepartment, Department.class);
-		logger.info("contentAsString"+contentAsStringDepartment);
-		Id_Department=this.department.getId_Department();
+		logger.info("contentAsString"+contentAsStringDepartment);		
 		logger.info("Id getId_Department"+this.department.getId_Department());
 		//
 		
