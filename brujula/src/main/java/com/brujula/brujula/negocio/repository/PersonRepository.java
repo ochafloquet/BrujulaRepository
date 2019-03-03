@@ -25,9 +25,7 @@ public interface PersonRepository extends JpaRepository<Person, String> {
 	@Query("Select c from Person c where c.id_Person =:identificacion")
 	public  Person findByIdentificacion(@Param("identificacion") String identificacion) ;
 	
-	/*
-	 * @Query("select p,dp from Person p left outer join p.DepartmentProffesors dp")
-	 * public List<Person> getAll();
-	 */
+	@Query("Select c from Person c where c.name =:name and c.surname =:surname")
+	public  Person findByFullName(@Param("name") String name,@Param("surname") String surname) ;
 
 }

@@ -44,5 +44,12 @@ public class PersonaService {
         return this.personRepository.findByIdentificacion(identificacion);
     }
 	
+	public  Person findByFullName(String name,String surname){
+		return this.personRepository.findByFullName(name, surname);
+	}
+	
+	
+	
+	
 
 }

@@ -7,6 +7,7 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -77,11 +78,8 @@ public class PersonaResourceTest {
 		Person_vo person_vo = new Person_vo("Oscar Alfredo", "Chafloque tampeck", 1984);
 		mockMvc.perform(MockMvcRequestBuilders.post("/persona/addperson").contentType(MediaType.APPLICATION_JSON)
 				.content(asJsonString(person_vo)).accept(MediaType.APPLICATION_JSON))
-				.andExpect(jsonPath("$.id_Person").exists()).andExpect(jsonPath("$.name").exists())
-				.andExpect(jsonPath("$.surname").exists()).andExpect(jsonPath("$.yearOfBirth").exists())
-				.andExpect(jsonPath("$.name").value("Oscar Alfredo"))
-				.andExpect(jsonPath("$.surname").value("Chafloque tampeck"))
-				.andExpect(jsonPath("$.yearOfBirth").value(1984)).andDo(print());
+				.andExpect(status().isBadRequest()).andDo(print());
+				
 	}
 
 	/**

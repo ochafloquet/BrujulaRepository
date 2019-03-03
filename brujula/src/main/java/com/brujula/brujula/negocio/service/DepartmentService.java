@@ -5,6 +5,7 @@ package com.brujula.brujula.negocio.service;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.brujula.brujula.modelo.Department;
@@ -33,6 +34,9 @@ public class DepartmentService {
         return this.departmentRepository.save(department);
     }
 	
+	public  Department findByDepartmentName(String departmentName) {
+		return this.departmentRepository.findByDepartmentName(departmentName);
+	}
 //	@Override
 //    public boolean exists(Department department) {
 //        return this.departmentRepository.findByName(department.getDepartmentName()) != null;

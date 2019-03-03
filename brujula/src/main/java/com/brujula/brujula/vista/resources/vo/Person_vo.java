@@ -27,5 +27,6 @@ public class Person_vo {
 		this.surname = surname;
 		this.yearOfBirth = yearOfBirth;
 	}
-
+	
+	
 }

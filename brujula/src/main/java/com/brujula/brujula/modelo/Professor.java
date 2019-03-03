@@ -59,7 +59,7 @@ public class Professor {
 	    }
 	
 	public Professor() {
-		super();
 	}
+	
 	
 }

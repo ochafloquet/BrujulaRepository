@@ -4,6 +4,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 
 import com.brujula.brujula.modelo.Department;
 import com.brujula.brujula.negocio.repository.DepartmentRepository;
@@ -25,6 +27,14 @@ public class BrujulaApplication {
 			departmentRepository.save(new Department("Admision"));
 			logger.info("la data ha sido cargada");
 		};
+	}
+	
+	@Configuration
+	public class PersistenceHibernateConfig{
+	   @Bean
+	   public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
+	      return new PersistenceExceptionTranslationPostProcessor();
+	   }
 	}
 
 }

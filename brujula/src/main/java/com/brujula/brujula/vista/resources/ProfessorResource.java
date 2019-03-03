@@ -38,7 +38,7 @@ public class ProfessorResource {
 	}
 	
 	@PostMapping(value = "/add")
-	public ResponseEntity<Professor> createDepartment(@RequestBody Professor_vo Professor_vo) {
+	public ResponseEntity<Professor> createProfesor(@RequestBody Professor_vo Professor_vo) {
 		Util util = new Util(); 
 		Professor professor = new Professor();
 		professor.setId_Person(Professor_vo.getId_Person());
@@ -51,7 +51,7 @@ public class ProfessorResource {
 	}
 	
 	@RequestMapping(value = "/all", method = RequestMethod.GET)	
-	public ResponseEntity<List<Professor>> findPersona() {
+	public ResponseEntity<List<Professor>> getAllProffesors() {
 		return ResponseEntity.ok(this.professorService.findAll());
 	}
 }

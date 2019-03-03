@@ -8,14 +8,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.brujula.brujula.modelo.Person;
@@ -90,12 +93,11 @@ public class PersonaResource {
 		return ResponseEntity.ok(this.personaService.findAll());
 	}
 	
-	/*
-	 * @RequestMapping(value = "/addperson", method = RequestMethod.POST, consumes =
-	 * MediaType.APPLICATION_JSON_VALUE, produces =
-	 * MediaType.APPLICATION_JSON_VALUE) public Person addPerson(@RequestBody Person
-	 * person) { return this.personaService.addPerson(person); }
-	 */
+	@PostMapping(value = "/getPersonByFullName")
+	public ResponseEntity<Person> getPersonByFullName(@RequestBody Person_vo person_vo) {		
+		return new ResponseEntity<>(this.personaService.findByFullName(person_vo.getName(), person_vo.getSurname()), HttpStatus.OK);
+	}
+	
 	
 	@PostMapping(value = "/addperson")
 	public ResponseEntity<Person> createPerson(@RequestBody Person_vo person_vo) {
@@ -104,6 +106,7 @@ public class PersonaResource {
 		person.setSurname(person_vo.getSurname());
 		person.setYearOfBirth(person_vo.getYearOfBirth()); 
 		return new ResponseEntity<>(this.personaService.addPerson(person), HttpStatus.CREATED);
+		
 	}
 
 }

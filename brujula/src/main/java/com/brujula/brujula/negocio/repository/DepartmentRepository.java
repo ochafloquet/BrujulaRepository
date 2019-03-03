@@ -21,6 +21,7 @@ public interface DepartmentRepository extends JpaRepository<Department, String>{
 	@Query("Select c from Department c where c.id_Department =:identificacion")
 	public  Department findByIdentificacion(@Param("identificacion") String identificacion) ;
 
-	
+	@Query("Select c from Department c where c.DepartmentName =:departmentName")
+	public  Department findByDepartmentName(@Param("departmentName") String departmentName) ;
 
 }

@@ -35,7 +35,7 @@ public class DepartmentResource {
 	}
 	
 	@RequestMapping(value = "/all", method = RequestMethod.GET)	
-	public ResponseEntity<List<Department>> findPersona() {
+	public ResponseEntity<List<Department>> getAllDepartament() {
 		return ResponseEntity.ok(this.departmentService.findAll());
 	}
 
@@ -43,5 +43,10 @@ public class DepartmentResource {
 	@ResponseBody
 	public ResponseEntity<Department> createDepartment(@RequestBody Department department) {
 		return new ResponseEntity<>(this.departmentService.addDepartment(department), HttpStatus.CREATED);
+	}
+	@PostMapping(value = "/findByDepartmentName", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<Department> findByDepartmentName(@RequestBody Department department) {
+		return new ResponseEntity<>(this.departmentService.findByDepartmentName(department.getDepartmentName()), HttpStatus.OK);
 	}
 }
