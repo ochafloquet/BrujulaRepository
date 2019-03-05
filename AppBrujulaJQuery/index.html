@@ -16,24 +16,21 @@
 
 </head>
 <body>
-<div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-        <div class="jumbotron">
-            <h2>Saludos desde Perú!</h2>
-            <h5>Este esta prueba de desarrollo de aplicaciones con JQuery es para:</h5>
-            <h5>Brujula Tecnologías de la Información S.A" - España</h5>
-            <h5>Servicios y tecnologías de la información</h5>
-            <h5>Palma de Mallorca, Baleares - España</h5>
-            <h5>Desarrollada por Oscar Alfredo Chafloque Tampeck</h5>
-            <h5>Analista Programador Senior</h5>
-            <p><a class="btn btn-primary" href="https://www.linkedin.com/company/brujula/" role="button">Quieres Saber más?</a></p>
-        </div>
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-3">Hello, Brujula TI S.A !</h1>
+        <p>Saludos desde Perú!</p>
+        <p>Prueba de desarrollo de aplicaciones con JQuery+Html5</p>
+        <p>Desarrollada por Oscar Alfredo Chafloque Tampeck - Analista Programador Senior <a class="glyphicon glyphicon-globe" href="https://www.linkedin.com/in/oscar-alfredo-chafloque-tampeck-a35194110/" >linkedin</a></p>
+        <p><a class="btn btn-primary" href="https://www.linkedin.com/company/brujula/" role="button">Quieres Saber más?</a></p>
     </div>
-    <div class="col-md-3"></div>
+
 </div>
+
+<div class="alert alert-success" role="alert" id="result"></div>
+
 <div class="row">
-    <div class="col-md-4"> </div>
+    <div class="col-md-4"><div class="alert" role="alert" id="result"></div></div>
     <div class="col-md-4">
 
         <select class="form-control" name="paises" id="paises" disabled="disabled"></select>
@@ -46,17 +43,19 @@
             <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
         </button>
         <button type="button" class="btn btn-default" id="btn_back">
-            <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
         </button>
      </div>
 </div>
+
+
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="myModalLabel">Registro de Paises</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -80,6 +79,21 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 <button type="button" id="btn_add" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Confirmar</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="modal-btn-si">Si</button>
+                <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
             </div>
         </div>
     </div>
